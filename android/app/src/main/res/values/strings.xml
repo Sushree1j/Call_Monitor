@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Call Monitor</string>
+    <string name="notification_channel_name">Call Recording</string>
+    <string name="notification_channel_description">Shows when call recording is active</string>
+    <string name="recording_notification_title">Recording Call</string>
+    <string name="recording_notification_text">Call recording in progress…</string>
+    <string name="service_notification_title">Call Monitor Active</string>
+    <string name="service_notification_text">Monitoring for incoming calls</string>
+</resources>

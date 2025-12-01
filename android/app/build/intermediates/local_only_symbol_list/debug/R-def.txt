@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id btnRequestPermissions
+id btnSaveServer
+id btnSyncNow
+id editServerUrl
+id txtPendingUploads
+id txtPermissionStatus
+id txtTotalRecordings
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+raw public_key
+string app_name
+string notification_channel_description
+string notification_channel_name
+string recording_notification_text
+string recording_notification_title
+string service_notification_text
+string service_notification_title
+style Theme.CallMonitor
+xml network_security_config
