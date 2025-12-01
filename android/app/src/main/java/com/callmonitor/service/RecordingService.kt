@@ -3,10 +3,12 @@ package com.callmonitor.service
 import android.app.Notification
 import android.app.PendingIntent
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
+import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequestBuilder
@@ -45,6 +47,7 @@ class RecordingService : Service() {
     private var isIncoming: Boolean = false
     private var recordingStartTime: Long = 0
     private var currentRecordingFile: File? = null
+    private var wakeLock: PowerManager.WakeLock? = null
 
     private val encryptionManager by lazy { EncryptionManager(this) }
     private val database by lazy { AppDatabase.getInstance(this) }
@@ -121,6 +124,9 @@ class RecordingService : Service() {
             return
         }
 
+        // Acquire wake lock to keep CPU running while recording
+        acquireWakeLock()
+
         try {
             val timestamp = System.currentTimeMillis()
             val fileName = "call_${timestamp}_${currentPhoneNumber.replace(Regex("[^0-9+]"), "")}.mp3"
@@ -135,7 +141,29 @@ class RecordingService : Service() {
             Log.d(TAG, "Recording started: ${currentRecordingFile?.absolutePath}")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to start recording", e)
+            releaseWakeLock()
             stopSelf()
+        }
+    }
+
+    private fun acquireWakeLock() {
+        if (wakeLock == null) {
+            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            wakeLock = powerManager.newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK,
+                "CallMonitor:RecordingWakeLock"
+            )
+        }
+        wakeLock?.acquire(60 * 60 * 1000L) // 1 hour max (for very long calls)
+        Log.d(TAG, "Wake lock acquired")
+    }
+
+    private fun releaseWakeLock() {
+        wakeLock?.let {
+            if (it.isHeld) {
+                it.release()
+                Log.d(TAG, "Wake lock released")
+            }
         }
     }
 
@@ -160,6 +188,7 @@ class RecordingService : Service() {
 
         audioRecorder = null
         currentRecordingFile = null
+        releaseWakeLock()
         stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
     }
@@ -213,6 +242,7 @@ class RecordingService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         audioRecorder?.stopRecording()
+        releaseWakeLock()
         serviceScope.cancel()
         Log.d(TAG, "Service destroyed")
     }
