@@ -3267,6 +3267,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnHideApp
 id btnRequestPermissions
 id btnSaveServer
 id btnSyncNow
@@ -5404,4 +5405,5 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml file_paths
 xml network_security_config

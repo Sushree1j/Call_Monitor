@@ -178,6 +178,48 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <!-- Hide App Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#1E1E1E"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔒 Stealth Mode"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hide this app from the launcher. Once hidden, the app will only be visible in Settings > Apps. You will need to uninstall and reinstall to show it again."
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:layout_marginBottom="12dp" />
+
+                <Button
+                    android:id="@+id/btnHideApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🙈 Hide App from Launcher"
+                    android:backgroundTint="#CC0000" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- Info Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

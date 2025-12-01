@@ -8,12 +8,12 @@
         "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-mdpi_ic_launcher_round.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/mipmap-mdpi/ic_launcher_round.xml"
-    },
-    {
         "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-xxxhdpi_ic_launcher_round.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/mipmap-xxxhdpi/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-mdpi_ic_launcher_round.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/mipmap-mdpi/ic_launcher_round.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-xhdpi_ic_launcher_round.xml.flat",
@@ -26,6 +26,10 @@
     {
         "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/xml_file_paths.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/xml/file_paths.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-merged_res-47:/mipmap-mdpi_ic_launcher.xml.flat",

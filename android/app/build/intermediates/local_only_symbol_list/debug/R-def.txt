@@ -9,6 +9,7 @@ color teal_700
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id btnHideApp
 id btnRequestPermissions
 id btnSaveServer
 id btnSyncNow
@@ -28,4 +29,5 @@ string recording_notification_title
 string service_notification_text
 string service_notification_title
 style Theme.CallMonitor
+xml file_paths
 xml network_security_config

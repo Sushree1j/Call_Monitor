@@ -22,6 +22,9 @@ public final class ActivityMainBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
+  public final Button btnHideApp;
+
+  @NonNull
   public final Button btnRequestPermissions;
 
   @NonNull
@@ -42,11 +45,13 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView txtTotalRecordings;
 
-  private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull Button btnRequestPermissions,
-      @NonNull Button btnSaveServer, @NonNull Button btnSyncNow,
-      @NonNull TextInputEditText editServerUrl, @NonNull TextView txtPendingUploads,
-      @NonNull TextView txtPermissionStatus, @NonNull TextView txtTotalRecordings) {
+  private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull Button btnHideApp,
+      @NonNull Button btnRequestPermissions, @NonNull Button btnSaveServer,
+      @NonNull Button btnSyncNow, @NonNull TextInputEditText editServerUrl,
+      @NonNull TextView txtPendingUploads, @NonNull TextView txtPermissionStatus,
+      @NonNull TextView txtTotalRecordings) {
     this.rootView = rootView;
+    this.btnHideApp = btnHideApp;
     this.btnRequestPermissions = btnRequestPermissions;
     this.btnSaveServer = btnSaveServer;
     this.btnSyncNow = btnSyncNow;
@@ -83,6 +88,12 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnHideApp;
+      Button btnHideApp = ViewBindings.findChildViewById(rootView, id);
+      if (btnHideApp == null) {
+        break missingId;
+      }
+
       id = R.id.btnRequestPermissions;
       Button btnRequestPermissions = ViewBindings.findChildViewById(rootView, id);
       if (btnRequestPermissions == null) {
@@ -125,8 +136,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((ScrollView) rootView, btnRequestPermissions, btnSaveServer,
-          btnSyncNow, editServerUrl, txtPendingUploads, txtPermissionStatus, txtTotalRecordings);
+      return new ActivityMainBinding((ScrollView) rootView, btnHideApp, btnRequestPermissions,
+          btnSaveServer, btnSyncNow, editServerUrl, txtPendingUploads, txtPermissionStatus,
+          txtTotalRecordings);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

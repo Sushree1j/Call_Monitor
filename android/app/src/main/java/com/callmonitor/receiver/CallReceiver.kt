@@ -3,6 +3,7 @@ package com.callmonitor.receiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.PowerManager
 import android.telephony.TelephonyManager
 import android.util.Log
 import com.callmonitor.service.RecordingService
@@ -17,7 +18,16 @@ class CallReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d(TAG, "onReceive: ${intent.action}")
+        // Acquire a wake lock to ensure we can start the service even when phone is locked
+        val powerManager = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+        val wakeLock = powerManager.newWakeLock(
+            PowerManager.PARTIAL_WAKE_LOCK,
+            "CallMonitor:CallReceiverWakeLock"
+        )
+        wakeLock.acquire(10 * 1000L) // 10 seconds max
+        
+        try {
+            Log.d(TAG, "onReceive: ${intent.action}")
 
         when (intent.action) {
             Intent.ACTION_NEW_OUTGOING_CALL -> {
@@ -38,6 +48,12 @@ class CallReceiver : BroadcastReceiver() {
                 }
 
                 onCallStateChanged(context, state, number)
+            }
+        }
+        } finally {
+            // Release wake lock when done
+            if (wakeLock.isHeld) {
+                wakeLock.release()
             }
         }
     }
