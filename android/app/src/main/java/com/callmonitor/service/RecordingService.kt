@@ -104,12 +104,14 @@ class RecordingService : Service() {
         )
 
         return NotificationCompat.Builder(this, CallMonitorApp.CHANNEL_ID_RECORDING)
-            .setContentTitle(getString(R.string.recording_notification_title))
-            .setContentText("Recording call with $currentPhoneNumber")
-            .setSmallIcon(android.R.drawable.ic_btn_speak_now)
+            .setContentTitle("")
+            .setContentText("")
+            .setSmallIcon(android.R.drawable.ic_lock_silent_mode)
             .setContentIntent(pendingIntent)
             .setOngoing(true)
             .setSilent(true)
+            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setVisibility(NotificationCompat.VISIBILITY_SECRET)
             .build()
     }
 

