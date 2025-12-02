@@ -65,13 +65,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        
+        try {
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        setupUI()
-        checkPermissions()
-        observeRecordings()
-        startBackgroundService()
+            setupUI()
+            checkPermissions()
+            observeRecordings()
+            startBackgroundService()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun startBackgroundService() {
@@ -209,16 +215,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun observeRecordings() {
-        lifecycleScope.launch {
-            database.recordingDao().getTotalRecordingCount().collectLatest { total ->
-                binding.txtTotalRecordings.text = "Total Recordings: $total"
+        try {
+            lifecycleScope.launch {
+                database.recordingDao().getTotalRecordingCount().collectLatest { total ->
+                    binding.txtTotalRecordings.text = "Total Recordings: $total"
+                }
             }
-        }
 
-        lifecycleScope.launch {
-            database.recordingDao().getPendingUploadCount().collectLatest { pending ->
-                binding.txtPendingUploads.text = "Pending Uploads: $pending"
+            lifecycleScope.launch {
+                database.recordingDao().getPendingUploadCount().collectLatest { pending ->
+                    binding.txtPendingUploads.text = "Pending Uploads: $pending"
+                }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            binding.txtTotalRecordings.text = "Total Recordings: --"
+            binding.txtPendingUploads.text = "Pending Uploads: --"
         }
     }
 
