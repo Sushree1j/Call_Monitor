@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-mergeDebugResources-46:/layout/activity_main.xml",
-        "source": "/home/codespace/.gradle/daemon/8.2/com.callmonitor.app-main-49:/layout/activity_main.xml"
-    },
-    {
         "merged": "com.callmonitor.app-mergeDebugResources-46:/layout/activity_main.xml",
         "source": "com.callmonitor.app-main-49:/layout/activity_main.xml"
     }
