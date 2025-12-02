@@ -1,41 +1,20 @@
 -- Merging decision tree log ---
-provider#androidx.startup.InitializationProvider
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:50:9-59:20
-MERGED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
-MERGED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/codespace/.gradle/caches/transforms-3/819c8fec10ca9053e2fdc64084845c33/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/codespace/.gradle/caches/transforms-3/819c8fec10ca9053e2fdc64084845c33/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/codespace/.gradle/caches/transforms-3/e58caff34ce1a3eba135ba65d58feff0/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/codespace/.gradle/caches/transforms-3/e58caff34ce1a3eba135ba65d58feff0/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/caches/transforms-3/cf763b3dbc183d317a4f5b4dc779fc8b/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/caches/transforms-3/cf763b3dbc183d317a4f5b4dc779fc8b/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-	tools:node
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:54:13-31
-	android:authorities
-		INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:52:13-68
-	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:53:13-37
-	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:51:13-67
 provider#androidx.core.content.FileProvider
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:117:9-125:20
+INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:105:9-113:20
 	android:grantUriPermissions
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:121:13-47
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:109:13-47
 	android:authorities
 		INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:119:13-60
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:107:13-60
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:120:13-37
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:108:13-37
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:118:13-62
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:106:13-62
 manifest
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-129:12
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-129:12
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-129:12
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-129:12
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-117:12
+INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-117:12
+INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-117:12
+INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:2:1-117:12
 MERGED from [androidx.databinding:viewbinding:8.2.0] /home/codespace/.gradle/caches/transforms-3/d31c5f439671074bed3e8375155d52aa/transformed/viewbinding-8.2.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] /home/codespace/.gradle/caches/transforms-3/7505e193dbaa99af17c9c1458796fc52/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/codespace/.gradle/caches/transforms-3/44219e5a2512dbf238d37048afec0656/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
@@ -178,8 +157,8 @@ ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:36:
 	android:name
 		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:36:22-80
 application
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:38:5-127:19
-INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:38:5-127:19
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:38:5-115:19
+INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:38:5-115:19
 MERGED from [com.google.android.material:material:1.11.0] /home/codespace/.gradle/caches/transforms-3/7505e193dbaa99af17c9c1458796fc52/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] /home/codespace/.gradle/caches/transforms-3/7505e193dbaa99af17c9c1458796fc52/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/codespace/.gradle/caches/transforms-3/44219e5a2512dbf238d37048afec0656/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -225,106 +204,97 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/cac
 	android:name
 		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:39:9-39
 activity#com.callmonitor.MainActivity
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:61:9-65:20
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:49:9-53:20
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:63:13-36
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:51:13-36
 	android:theme
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:64:13-53
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:52:13-53
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:62:13-41
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:50:13-41
 activity-alias#com.callmonitor.LauncherAlias
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:68:9-77:26
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:56:9-65:26
 	android:enabled
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:71:13-35
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:59:13-35
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:72:13-36
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:60:13-36
 	android:targetActivity
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:70:13-51
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:58:13-51
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:69:13-42
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:57:13-42
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:73:13-76:29
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:61:13-64:29
 action#android.intent.action.MAIN
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:74:17-69
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:62:17-69
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:74:25-66
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:62:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:75:17-77
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:63:17-77
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:75:27-74
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:63:27-74
 receiver#com.callmonitor.receiver.CallReceiver
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:80:9-88:20
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:68:9-76:20
 	android:enabled
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:82:13-35
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:70:13-35
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:83:13-36
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:71:13-36
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:81:13-50
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:69:13-50
 intent-filter#action:name:android.intent.action.NEW_OUTGOING_CALL+action:name:android.intent.action.PHONE_STATE
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:84:13-87:29
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:72:13-75:29
 action#android.intent.action.PHONE_STATE
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:85:17-76
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:73:17-76
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:85:25-73
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:73:25-73
 action#android.intent.action.NEW_OUTGOING_CALL
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:86:17-82
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:74:17-82
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:86:25-79
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:74:25-79
 receiver#com.callmonitor.receiver.BootReceiver
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:91:9-99:20
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:79:9-87:20
 	android:enabled
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:93:13-35
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:81:13-35
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:94:13-36
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:82:13-36
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:92:13-50
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:80:13-50
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.QUICKBOOT_POWERON
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:95:13-98:29
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:83:13-86:29
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:96:17-79
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:84:17-79
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:96:25-76
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:84:25-76
 action#android.intent.action.QUICKBOOT_POWERON
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:97:17-82
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:85:17-82
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:97:25-79
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:85:25-79
 service#com.callmonitor.service.RecordingService
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:102:9-106:68
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:90:9-94:68
 	android:enabled
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:104:13-35
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:92:13-35
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:105:13-37
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:93:13-37
 	android:foregroundServiceType
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:106:13-65
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:94:13-65
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:103:13-53
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:91:13-53
 service#com.callmonitor.service.BackgroundService
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:109:9-114:44
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:97:9-102:44
 	android:enabled
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:111:13-35
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:99:13-35
 	android:exported
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:112:13-37
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:100:13-37
 	android:stopWithTask
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:114:13-41
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:102:13-41
 	android:foregroundServiceType
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:113:13-65
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:101:13-65
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:110:13-54
-meta-data#androidx.work.WorkManagerInitializer
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:55:13-58:39
-REJECTED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:34:13-36:52
-	tools:node
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:58:17-36
-	android:value
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:57:17-49
-	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:56:17-68
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:98:13-54
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:122:13-124:54
+ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:110:13-112:54
 	android:resource
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:124:17-51
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:112:17-51
 	android:name
-		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:123:17-67
+		ADDED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml:111:17-67
 uses-sdk
 INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml
@@ -451,12 +421,36 @@ MERGED from [androidx.print:print:1.0.0] /home/codespace/.gradle/caches/transfor
 		INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /workspaces/Call_Monitor/android/app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
+MERGED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:29:9-37:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/codespace/.gradle/caches/transforms-3/819c8fec10ca9053e2fdc64084845c33/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] /home/codespace/.gradle/caches/transforms-3/819c8fec10ca9053e2fdc64084845c33/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/codespace/.gradle/caches/transforms-3/e58caff34ce1a3eba135ba65d58feff0/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /home/codespace/.gradle/caches/transforms-3/e58caff34ce1a3eba135ba65d58feff0/transformed/profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/caches/transforms-3/cf763b3dbc183d317a4f5b4dc779fc8b/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/caches/transforms-3/cf763b3dbc183d317a4f5b4dc779fc8b/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:25:13-67
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
 ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
 	android:value
 		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:31:17-49
 	android:name
 		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/263ecb71c0ab0adc8037489c2d180fd6/transformed/emoji2-1.2.0/AndroidManifest.xml:30:17-75
+meta-data#androidx.work.WorkManagerInitializer
+ADDED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:34:13-36:52
+	android:value
+		ADDED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:36:17-49
+	android:name
+		ADDED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:35:17-68
 service#androidx.work.impl.background.systemalarm.SystemAlarmService
 ADDED from [androidx.work:work-runtime:2.9.0] /home/codespace/.gradle/caches/transforms-3/2dc86c5e8d37e434d501669ed3235dea/transformed/work-runtime-2.9.0/AndroidManifest.xml:39:9-45:35
 	android:enabled

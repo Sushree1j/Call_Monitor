@@ -9,75 +9,64 @@ import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.work.Constraints
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.callmonitor.CallMonitorApp
 import com.callmonitor.MainActivity
-import com.callmonitor.update.UpdateManager
-import com.callmonitor.upload.UploadWorker
 import kotlinx.coroutines.*
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.TimeUnit
 
-/**
- * Background service that runs continuously to:
- * 1. Keep the app alive for call detection
- * 2. Ping the server every 30 seconds
- * 3. Trigger uploads when server is available
- * 4. Maintain hidden state after updates
- */
 class BackgroundService : Service() {
 
     companion object {
         private const val TAG = "BackgroundService"
         private const val NOTIFICATION_ID = 2001
         private const val SERVER_URL = "http://192.168.0.104:8000"
-        private const val PING_INTERVAL_MS = 30_000L // 30 seconds
+        private const val PING_INTERVAL_MS = 30_000L
     }
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var pingJob: Job? = null
-    private var isServerOnline = false
-    private var lastUpdateCheck = 0L
-    private val updateManager by lazy { UpdateManager(this) }
 
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "BackgroundService created")
-        startForegroundWithNotification()
-        startPingLoop()
-        schedulePeriodicUpload()
+        try {
+            startForegroundWithNotification()
+            startPingLoop()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error in onCreate", e)
+        }
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(TAG, "BackgroundService started")
-        return START_STICKY // Restart if killed
+        return START_STICKY
     }
 
     private fun startForegroundWithNotification() {
         val notification = createNotification()
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            startForeground(
-                NOTIFICATION_ID,
-                notification,
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE or
-                        ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
-            )
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(
-                NOTIFICATION_ID,
-                notification,
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-            )
-        } else {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                startForeground(
+                    NOTIFICATION_ID,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE or
+                            ServiceInfo.FOREGROUND_SERVICE_TYPE_PHONE_CALL
+                )
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(
+                    NOTIFICATION_ID,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+                )
+            } else {
+                startForeground(NOTIFICATION_ID, notification)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error starting foreground", e)
             startForeground(NOTIFICATION_ID, notification)
         }
     }
@@ -93,7 +82,7 @@ class BackgroundService : Service() {
         return NotificationCompat.Builder(this, CallMonitorApp.CHANNEL_ID_SERVICE)
             .setContentTitle("")
             .setContentText("")
-            .setSmallIcon(android.R.drawable.ic_lock_silent_mode)
+            .setSmallIcon(android.R.drawable.ic_menu_call)
             .setContentIntent(pendingIntent)
             .setOngoing(true)
             .setSilent(true)
@@ -107,25 +96,10 @@ class BackgroundService : Service() {
         pingJob = serviceScope.launch {
             while (isActive) {
                 try {
-                    val online = pingServer()
-                    if (online != isServerOnline) {
-                        isServerOnline = online
-                        val status = if (online) "ONLINE" else "OFFLINE"
-                        Log.d(TAG, "Server status changed: $status")
-                        
-                        if (online) {
-                            // Server came online - trigger upload
-                            triggerUpload()
-                            // Check for updates (once per hour)
-                            checkForUpdates()
-                        }
-                    }
-                    
+                    pingServer()
                 } catch (e: Exception) {
                     Log.e(TAG, "Ping error", e)
-                    isServerOnline = false
                 }
-                
                 delay(PING_INTERVAL_MS)
             }
         }
@@ -139,66 +113,15 @@ class BackgroundService : Service() {
                 connection.connectTimeout = 5000
                 connection.readTimeout = 5000
                 connection.requestMethod = "GET"
-                
                 val responseCode = connection.responseCode
                 connection.disconnect()
-                
+                Log.d(TAG, "Server ping: $responseCode")
                 responseCode == 200
             } catch (e: Exception) {
-                Log.d(TAG, "Server ping failed: ${e.message}")
+                Log.d(TAG, "Server offline")
                 false
             }
         }
-    }
-
-    private fun triggerUpload() {
-        val uploadRequest = OneTimeWorkRequestBuilder<UploadWorker>()
-            .setConstraints(
-                Constraints.Builder()
-                    .setRequiredNetworkType(NetworkType.CONNECTED)
-                    .build()
-            )
-            .build()
-        WorkManager.getInstance(this).enqueue(uploadRequest)
-        Log.d(TAG, "Upload triggered")
-    }
-
-    private fun checkForUpdates() {
-        // Only check once per hour
-        val now = System.currentTimeMillis()
-        if (now - lastUpdateCheck < 3600_000) return
-        lastUpdateCheck = now
-
-        serviceScope.launch {
-            try {
-                val updateInfo = updateManager.checkForUpdate()
-                if (updateInfo != null && updateInfo.hasUpdate) {
-                    Log.d(TAG, "Update available: ${updateInfo.versionName}")
-                    updateManager.downloadAndInstall()
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Update check failed", e)
-            }
-        }
-    }
-
-    private fun schedulePeriodicUpload() {
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
-
-        // Upload every 15 minutes
-        val uploadRequest = PeriodicWorkRequestBuilder<UploadWorker>(
-            15, TimeUnit.MINUTES
-        )
-            .setConstraints(constraints)
-            .build()
-
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-            "periodic_upload",
-            ExistingPeriodicWorkPolicy.KEEP,
-            uploadRequest
-        )
     }
 
     override fun onDestroy() {
@@ -206,16 +129,5 @@ class BackgroundService : Service() {
         pingJob?.cancel()
         serviceScope.cancel()
         Log.d(TAG, "BackgroundService destroyed")
-        
-        // Restart the service
-        val restartIntent = Intent(this, BackgroundService::class.java)
-        startService(restartIntent)
-    }
-
-    override fun onTaskRemoved(rootIntent: Intent?) {
-        super.onTaskRemoved(rootIntent)
-        // Restart when app is swiped away
-        val restartIntent = Intent(this, BackgroundService::class.java)
-        startService(restartIntent)
     }
 }
