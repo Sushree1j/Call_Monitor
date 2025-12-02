@@ -3,15 +3,12 @@ package com.callmonitor.service
 import android.app.Notification
 import android.app.PendingIntent
 import android.app.Service
-import android.content.ComponentName
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.preference.PreferenceManager
 import androidx.work.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
@@ -20,7 +17,6 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.callmonitor.CallMonitorApp
 import com.callmonitor.MainActivity
-import com.callmonitor.R
 import com.callmonitor.update.UpdateManager
 import com.callmonitor.upload.UploadWorker
 import kotlinx.coroutines.*
@@ -42,7 +38,6 @@ class BackgroundService : Service() {
         private const val NOTIFICATION_ID = 2001
         private const val SERVER_URL = "http://192.168.0.104:8000"
         private const val PING_INTERVAL_MS = 30_000L // 30 seconds
-        private const val PREF_APP_HIDDEN = "app_hidden"
     }
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -59,7 +54,6 @@ class BackgroundService : Service() {
         startForegroundWithNotification()
         startPingLoop()
         schedulePeriodicUpload()
-        ensureHiddenState() // Re-apply hidden state after updates
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -205,35 +199,6 @@ class BackgroundService : Service() {
             ExistingPeriodicWorkPolicy.KEEP,
             uploadRequest
         )
-    }
-
-    /**
-     * Ensures the app remains hidden after OTA updates.
-     * When an update is installed, the component state might reset,
-     * so we re-apply the hidden state based on saved preference.
-     */
-    private fun ensureHiddenState() {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        val isHidden = prefs.getBoolean(PREF_APP_HIDDEN, false)
-        
-        if (isHidden) {
-            try {
-                val componentName = ComponentName(this, "com.callmonitor.LauncherAlias")
-                val currentState = packageManager.getComponentEnabledSetting(componentName)
-                
-                // If not already disabled, disable it
-                if (currentState != PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
-                    packageManager.setComponentEnabledSetting(
-                        componentName,
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP
-                    )
-                    Log.d(TAG, "Re-applied hidden state after update")
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to ensure hidden state", e)
-            }
-        }
     }
 
     override fun onDestroy() {
